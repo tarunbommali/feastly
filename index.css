@@ -65,11 +65,11 @@
   
   .restaurant-list {
     display: flex;
-    justify-content: space-between;
+    justify-content : flex-start;
     align-items: center ; 
     flex-wrap: wrap;
     padding: 18px;
-    width: 80%;
+    width: 90%;
   }
   
   .restaurant-list .restaurant-card {
@@ -81,8 +81,7 @@
     display: flex;
     flex-direction: column;
     background-color: white;
-    margin: 3px 5px;
-  
+    margin: 3px 15px;
     border: 1px solid transparent;
   }
   
@@ -135,3 +134,30 @@
     text-decoration: none;
   }
   
+
+  .body-header{
+    display: flex ;
+    justify-content : space-between ;
+    text-align : left ; 
+    align-items : flex-start ;
+    width: 85% ; 
+    margin : 25px 0px ; 
+  }
+
+  input {
+    padding : 3px 8px ; 
+    font-size : 18px  ;
+    color : #1f1f1f;
+    outline: none ; 
+    border-radius : 5px; 
+    border: 1px solid #181818; 
+  }
+
+  .search {
+    cursour: pointer; 
+    padding : 3px 8px ; 
+    font-size : 28px  ;
+    color : #1f1f1f;
+    border: 1px solid #181818; 
+    border-radius : 5px; 
+  }
