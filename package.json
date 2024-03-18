@@ -1,0 +1,25 @@
+{
+  "name": "feastly-foods",
+  "version": "1.0.0",
+  "description": "A Food Delevring App",
+  "main": "App.js",
+  "scripts": {
+    "test": "jest",
+    "start": "npx parcel index.html",
+    "build": "npx parcel build index.html"
+  },
+  "keywords": [
+    "React18"
+  ],
+  "author": "TarunBommali",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel": "^2.12.0",
+    "process": "^0.11.10"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "browserslist": "last 3 versions"
+}

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Feastly Foods</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <!-- using HTML ELEMENT -->
+    <h1>Hello World! This message is displayed using HTML.</h1>
+
+    <!-- using javascript DOM MANIPULATION root element -->
+    <div id="js-root"></div>
+
+    <!-- using React , root Element for react -->
+    <div id="react-root"></div>
+
+    <!-- using React, root Element for External  File -->
+    <div id="external-react-root"></div>
+
+    <!-- 
+If any elements are there in this react-root in html, ReactDOM will 
+Replaces all the elements inside the  root element of it, with rendered Elements.
+-->
+
+    <!-- js DOM Manipulation -->
+    <script>
+      const jsRootEl = document.getElementById("js-root");
+      const h2El = document.createElement("h2");
+      h2El.textContent =
+        "Hello World! This message is displayed using JavaScript.";
+      jsRootEl.appendChild(h2El);
+    </script>
+
+    <!-- importing CDN  -->
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+
+    <!-- react inline javascript -->
+    <script>
+      const h3El = React.createElement(
+        "h3",
+        { id: "reactInlineHeading" },
+        "Hello World! This message is displayed using React (inline javascript)."
+      );
+
+      const root = ReactDOM.createRoot(document.getElementById("react-root"));
+      root.render(h3El);
+    </script>
+    <div id="root"></div>
+
+    <!-- external javascript -->
+    <script type="module" src="App.js"></script>
+  </body>
+</html>
