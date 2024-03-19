@@ -68,7 +68,6 @@
 
 
 #### EP.05-LET'S GET HOOKED! 
-
     - Clean up your code.
     - Create a Folder Structure for your app.
     - Make different files for each Component.
@@ -82,3 +81,19 @@
     - [Code Repo](https://github.com/tarunbommali/Feastly-Foods)
 
     - [project live](https://feastly.netlify.app/)
+
+
+#### EP.06 
+    - Play with the useEffect Hook to see when it is called? (before or after render)
+    - Play with the dependency array in useEffect Hook.
+    - Play with the developer console by putting a debugger in render and useEffect.
+    - Call an actual API call.
+    - Handle Error in your API call.
+    - Build Shimmer UI when data is not loaded.
+    - Render your UI with actual API data.
+    - Make Search functionality work.
+    - Make a Login Logout button that toggles with a stat
+
+
+
+#### EP.

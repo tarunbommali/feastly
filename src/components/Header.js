@@ -1,7 +1,8 @@
+import { useState } from "react";
 import { LOGO_IMG_URL } from "../utils/constants";
 
 const Header = () => {
-    
+    const [isLogin , setIsLogin] = useState(false)
     return (
         <div className='header'>
             <div className='logo'>
@@ -11,8 +12,9 @@ const Header = () => {
             <ul className="nav-list">
         <li>Home</li>
         <li>Help</li>
-        <li>Sign In</li>
         <li>Cart</li>
+        <li><button className="login-btn" onClick={() => {setIsLogin(!isLogin)}}>{isLogin ? "Sign In" : "Sign Out"}</button></li>
+       
       </ul>
         </div>
         
