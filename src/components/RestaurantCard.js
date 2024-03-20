@@ -1,16 +1,20 @@
+import { Link } from "react-router-dom";
+import { RATING_STAR_ICON_URL } from "../utils/constants";
+
 const RestaurantCard = (props) => {
     const { restaurant } = props;
-    const { info } = restaurant;
+    const { info , cta} = restaurant;
     const { id, cloudinaryImageId, name, avgRating, sla, locality } = info;
     const { slaString } = sla;
+    
     return (
-      <li className="restaurant-card" key={id}>
+     <Link to={`restaurants/${id}` } className="nav-link" key={id}> <li className="restaurant-card" >
         <img
           className="restaurant-img"
           src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/${cloudinaryImageId}`}
         />
   
-        <h3 className="restaurant-title" style={{ color: "#414449" }}>{name}</h3>
+        <h3 className="restaurant-card-title" style={{ color: "#414449" }}>{name}</h3>
         <h4
           style={{
             display: "flex",
@@ -20,7 +24,7 @@ const RestaurantCard = (props) => {
           }}
         >
           <img
-            src="https://res.cloudinary.com/drdgj0pch/image/upload/v1710400102/Frontend/Icons/star_rating_twbpwj.svg"
+            src={RATING_STAR_ICON_URL}
             className="star-icon"
           />
           {avgRating}
@@ -30,7 +34,7 @@ const RestaurantCard = (props) => {
         </h4>
         <p className="cuisines">{restaurant.info.cuisines.join(", ")}</p>
         <p style={{ color: "#676a6d" }}>{locality}</p>
-      </li>
+      </li></Link>
     );
   };
 

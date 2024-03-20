@@ -92,8 +92,16 @@
     - Build Shimmer UI when data is not loaded.
     - Render your UI with actual API data.
     - Make Search functionality work.
-    - Make a Login Logout button that toggles with a stat
+    - Make a Login Logout button that toggles with a state.
+    - EP.6.01 & EP.6.02
+        - Swiggy API Issue Resolved
+        - CORS Plugin Issue solved
 
-
-
-#### EP.
+#### EP.07
+    - Add Shimmer Effect without installing a library.
+    - Install react-router-dom.
+    - Create an appRouter and Provide it to the app.
+    - Create a Home, About, and Contact Page with Link (use child routes).
+    - Make an Error page for routing errors.
+    - Create a Restaurant Page with dynamic restaurant ID.
+    - (Extra) - Create a login Page using Formik Library.

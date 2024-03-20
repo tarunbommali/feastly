@@ -138,31 +138,48 @@ li {
 .body-header {
   display: flex;
   justify-content: space-between;
-  text-align: left;
-  align-items: flex-start;
+  align-items: center;
   width: 85%;
   margin: 25px 0px;
 }
 
 input {
-  padding: 3px 8px;
-  font-size: 18px;
+  padding: 5px 5px;
+  font-size: 16px;
   color: #1f1f1f;
   outline: none;
   border-radius: 5px;
   border: 1px solid #181818;
 }
 
-.search {
-  cursour: pointer;
-  padding: 3px 8px;
-  font-size: 28px;
-  color: #1f1f1f;
-  border: 1px solid #181818;
-  border-radius: 5px;
+.search-input-container{
+  display : flex ; 
+  border : 1px solid #bebfbf ; 
+  border-radius: 15px;
 }
 
+.search {
+  cursor : pointer ; 
+  padding: 5px 15px;
+  font-size: 18px;
+  color: #1f1f1f;
+  border :none ; 
+  outline : none; 
 
+}
+
+.icon {
+  font-size : 18px ; 
+  font-weight: 500; 
+}
+
+.icon-button {
+  background : transparent ;
+  border : none ; 
+  outline : none ; 
+  cursor: pointer;
+
+}
 
 
 /* shimmer-card */
@@ -223,9 +240,157 @@ input {
 
 
 .login-btn{
-  padding: 3px 5px; 
-  cursour: pointer ; 
+  padding: 6px 3px; 
+  
+  cursor: pointer ; 
   font-size: 18px; 
   outline: none;
 
+}
+
+.nav-link{
+  text-decoration : none ; 
+
+}
+
+
+.restaurant-menu-container{
+  display: flex; 
+  flex-direction : column ; 
+  align-items : center ; 
+  min-height : 100vh ; 
+  background : #f3f2ef;
+  margin: 0px;  
+}
+
+.restaurant-details{
+  display: flex; 
+  justify-content : space-between ; 
+  width: 80% ; 
+  background : #ffffff; 
+  color : #7e808c; 
+  padding:  15px 5px; 
+  border-radius : 5px; 
+  margin : 5px 0px ; 
+}
+
+.menu-title {
+  color : #282c3f; 
+}
+
+.menu-list-container{
+  display: flex; 
+  flex-direction : column ; 
+  width: 80% ; 
+  background : #ffffff; 
+  color : #7e808c; 
+  padding:  15px 0px; 
+  border-radius : 5px; 
+  margin : 5px 0px ; 
+}
+
+.card-accordion-item{
+  border-bottom : 1px solid red; 
+}
+
+.err-page{
+  display : flex ; 
+  justify-content : center ; 
+  align-items: center ; 
+}
+
+
+
+/* Login */
+
+.login {
+  min-height: 100vh ; 
+  display : flex; 
+  flex-direction : column ; 
+  justify-content : center ; 
+  align-items : center ; 
+  color : #0f1018; 
+}
+
+.login-title-container{
+  display: flex ; 
+  width : 100% ;
+  padding-bottom : 15px; 
+  justify-content : space-between ; 
+}
+
+.login-title{
+  color : #1f1f1f; 
+}
+
+
+.input-container{
+  display: flex ; 
+  flex-direction : column ; 
+  margin : 5px 0px; 
+}
+
+.form-container{
+  display: flex ; 
+  flex-direction : column ; 
+  background : #f3f2ef; 
+  width : 450px  ; 
+  padding : 25px 15px;
+  margin : 5px 15px ; 
+  border-radius : 15px ; 
+}
+
+.login-btn {
+  padding : 5px 15px; 
+  margin-top: 25px; 
+  margin-bottom : 3px ; 
+  outline : none ; 
+  border : none ; 
+  cursor: pointer ;
+  border-radius : 5px; 
+  font-size: 18px; 
+  outline: none;
+  border : none ; 
+  background : #004182; 
+  color : white ; 
+}
+
+.input-field{
+  padding : 3px 5px; 
+  margin: 3px 0px  ;
+}
+
+.err-msg{
+  color  : red ;
+  height: 18px; 
+}
+
+.disclaimer{
+  margin-top : 5px; 
+  color : #1f1f1f ;
+}
+
+.route{
+  display : flex ; 
+  justify-content : center ;
+  align-item: center ;
+  min-height: 100vh ; 
+  padding : 15px 5px; 
+}
+
+.breadcum{
+  display : flex ; 
+  justify-content : flex-start ; 
+  font-size : 11px;
+  margin: 5px 0px ;  
+  align-items: center ; 
+}
+.active-breadcum {
+  color : #535665; 
+  font-weight: 600;
+}
+
+.res-menu-rating{
+  display : flex ; 
+  align-items: center ; 
 }
