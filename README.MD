@@ -83,7 +83,7 @@
     - [project live](https://feastly.netlify.app/)
 
 
-#### EP.06 
+#### EP.06-EXPLORING THE WORLD
     - Play with the useEffect Hook to see when it is called? (before or after render)
     - Play with the dependency array in useEffect Hook.
     - Play with the developer console by putting a debugger in render and useEffect.
@@ -97,7 +97,7 @@
         - Swiggy API Issue Resolved
         - CORS Plugin Issue solved
 
-#### EP.07
+#### EP.07-FINDING THE PATH
     - Add Shimmer Effect without installing a library.
     - Install react-router-dom.
     - Create an appRouter and Provide it to the app.
@@ -105,3 +105,16 @@
     - Make an Error page for routing errors.
     - Create a Restaurant Page with dynamic restaurant ID.
     - (Extra) - Create a login Page using Formik Library.
+
+#### EP.08-LET'S GET CLASSY
+    - Create Class Based Component.
+        - Create 2 class-based child components.
+        - Pass props from Parent to child.
+        - Create a constructor.
+        - Create a state variable inside child.
+        - Use this.setState to update it.
+        - What if there are multiple state variables?
+        - Write a console.log for each lifecycle method.
+        - Play with the console logs to find out the correct order of their execution.
+    - Create interval inside componentDidMount?
+        - Use clearInterval to fix the issue caused by the interval

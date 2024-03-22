@@ -8,6 +8,9 @@ const Body = () => {
   const [restaurantsList, setRestaurantsList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchInput, setSearchInput] = useState(""); // Added missing state for search input
+  const [title, setTitle] = useState("")
+
+  
 
   const onHandleSearch = (searchInputText) => {
     setSearchInput(searchInputText);
@@ -22,22 +25,29 @@ const Body = () => {
     setRestaurantsList(initialRestaurantsList); // Reset restaurant list to initial state
   };
 
-  const url =
-    "https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.406498&lng=78.47724389999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING";
+  let lat =   17.6868159
+  let  lng =   83.2184815
+
+  const url = `https://www.swiggy.com/dapi/restaurants/list/v5?lat=${lat}&lng=${lng}&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING`
+  // const url =
+  //   "https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.406498&lng=78.47724389999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING";
 
   const getRestaurantList = async () => {
     try {
       const response = await fetch(url);
       const res = await response.json();
-      const restaurantsList =
-        res.data.cards[1].card.card.gridElements.infoWithStyle.restaurants;
+      const restaurantsList = res.data.cards[1].card.card.gridElements.infoWithStyle.restaurants;
+      const title = res.data.cards[1].card.card.header.title;
       setInitialRestaurantsList(restaurantsList);
       setRestaurantsList(restaurantsList); // Set initial list
       setLoading(false);
+      setTitle(title)
     } catch (error) {
       console.error("Error fetching restaurant list:", error);
       setLoading(false);
     }
+
+    
   };
 
   useEffect(() => {
@@ -49,11 +59,11 @@ const Body = () => {
   ) : (
     <div className="app-container">
       <div className="body-header">
-        <h1>Top restaurants in Hyderabad</h1>
+        <h1 className="title">{title}</h1>
         <div className="search-input-container">
           <input
             type="text"
-            placeholder="Search for Dishes and Restaurants"
+            placeholder="Search for Restaurants"
             className="search"
             value={searchInput}
             onChange={(e) => onHandleSearch(e.target.value)} // Fixed onChange handler
