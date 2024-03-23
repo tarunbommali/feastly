@@ -160,11 +160,12 @@ input {
   display : flex ; 
   border : 1px solid #bebfbf ; 
   border-radius: 15px;
+  padding: 3px 5px;
 }
 
 .search {
   cursor : pointer ; 
-  padding: 5px 15px;
+  padding: 5px px;
   font-size: 18px;
   color: #1f1f1f;
   border :none ; 
@@ -423,4 +424,10 @@ input {
 
 .git-link:hover {
   color : orange ; 
+}
+
+.location-details{
+  display : flex ; 
+  flex-direction: column ; 
+  border-left : 1px solid red ;
 }
