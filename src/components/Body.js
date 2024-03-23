@@ -14,6 +14,7 @@ const Body = () => {
   const [lat, setLat] = useState(17.6868159);
   const [lng, setLng] = useState(83.2184815);
   const [locationName, setLocationName] = useState("");
+  const onlineStatus = useOnlineStatus();
 
   useEffect(() => {
     getLocation();
@@ -35,49 +36,6 @@ const Body = () => {
           .includes(searchInputText.toLowerCase())
     );
     setRestaurantsList(filteredRestaurantsList);
-  };
-
-  const renderSearchInput = () => {
-    return (
-      <div className="search-input-container">
-        <input
-          type="text"
-          placeholder="Search for Restaurants"
-          className="search"
-          value={searchInput}
-          onChange={(e) => onHandleSearch(e.target.value)}
-        />
-        {searchInput.length !== 0 ? (
-          <button onClick={resetSearch} className="icon-button">
-            <IoCloseSharp className="icon" />
-          </button>
-        ) : (
-          <button
-            onClick={() => onHandleSearch(searchInput)}
-            className="icon-button"
-          >
-            <IoSearchOutline className="icon" />
-          </button>
-        )}
-      </div>
-    );
-  };
-
-  document.title = "Order Food Online from India's Best Food Delivery Service | feastly"
-
-  const renderRestaurantList = () => {
-    return (
-      <ul className="restaurant-list">
-        {restaurantsList.map((restaurant, index) => (
-          <RestaurantCard
-            key={index}
-            restaurant={restaurant}
-            lat={lat}
-            lng={lng}
-          />
-        ))}
-      </ul>
-    );
   };
 
   const resetSearch = () => {
@@ -106,7 +64,34 @@ const Body = () => {
     }
   };
 
+  const renderSearchInput = () => {
+    return (
+      <div className="flex items-center border-[1px] rounded-md text-black  px-3 py-1 text-lg mr-5">
+        <input
+          type="text"
+          placeholder="Search for Restaurants"
+          className="py-1 px-1 mr-2 outline-none"
+          value={searchInput}
+          onChange={(e) => onHandleSearch(e.target.value)}
+        />
+        {searchInput.length !== 0 ? (
+          <button onClick={resetSearch} className="icon-button">
+            <IoCloseSharp className="icon" />
+          </button>
+        ) : (
+          <button
+            onClick={() => onHandleSearch(searchInput)}
+            className="icon-button"
+          >
+            <IoSearchOutline className="icon" />
+          </button>
+        )}
+      </div>
+    );
+  };
 
+  document.title =
+    "Order Food Online from India's Best Food Delivery Service | feastly";
 
   const getLocationName = async (latitude, longitude) => {
     try {
@@ -115,7 +100,6 @@ const Body = () => {
       );
       const data = await response.json();
       const addressComponents = data.address;
-
 
       console.log(addressComponents);
 
@@ -156,25 +140,48 @@ const Body = () => {
     }
   };
 
-  const onlineStatus = useOnlineStatus() ; 
+  const renderRestaurantList = () => {
+    return (
+      <ul className="flex flex-wrap items-center p-4 w-[85%]">
+        {restaurantsList.map((restaurant, index) => (
+          <RestaurantCard
+            key={index}
+            restaurant={restaurant}
+            lat={lat}
+            lng={lng}
+          />
+        ))}
+      </ul>
+    );
+  };
 
-  if (onlineStatus === false) return <h1>Looks likes your offline!😮</h1> 
-
-  return (
-    <div className="app-container">
-      <div className="body-header">
-        <div className="location-details">
-          <p>{locationName}</p>
-          <button onClick={getLocation} className="get-location-btn">
-            <FaLocationCrosshairs />
+  const renderBodyHeader = () => {
+    return (
+      <div className="flex justify-between items-center w-[80%] py-3 my-2 text-[#93959f]">
+        <div className="flex flex-col  py-3 ">
+          <p>{!locationName ? "...loading" : locationName}</p>
+          <button
+            onClick={getLocation}
+            className="flex items-center  font-semibold text-[#3d4046]"
+          >
+            <FaLocationCrosshairs className="mr-1" />
             Get current location
           </button>
         </div>
         {renderSearchInput()}
       </div>
-      <div className="title">
-        <h1>{title}</h1>
+    );
+  };
+
+  if (onlineStatus === false) return <h1>Looks likes your offline!😮</h1>;
+
+  return (
+    <div className="flex  min-h-screen flex-col items-center">
+      {renderBodyHeader()}
+      <div className="flex justify-between w-[80%]  ">
+        <h1 className="py-3 font-bold text-2xl ">{title}</h1>
       </div>
+      <hr className="border-[1px] stroke-lime-600" />
       {loading ? <ShimmerUi /> : renderRestaurantList()}
     </div>
   );

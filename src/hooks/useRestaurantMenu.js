@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-export default function useRestaurantMenu(resId) {    
+export default function useRestaurantMenu(resId) {
   const [resInfo, setResInfo] = useState(null);
 
   useEffect(() => {
@@ -14,7 +14,7 @@ export default function useRestaurantMenu(resId) {
         }
         const data = await response.json();
         setResInfo(data);
-        console.log("custom hook called")
+        console.log("custom hook called");
       } catch (error) {
         console.error("Error fetching menu:", error);
       }
@@ -25,4 +25,3 @@ export default function useRestaurantMenu(resId) {
 
   return resInfo;
 }
-

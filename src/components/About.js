@@ -12,7 +12,7 @@ export default class About extends Component {
     this.getProfileDetails();
     this.timerId = setInterval(() => {
       this.setState((prevState) => ({
-        counter: prevState.counter + 1
+        counter: prevState.counter + 1,
       }));
     }, 1000);
     console.log("componentDidMount called");
@@ -36,22 +36,33 @@ export default class About extends Component {
   };
 
   render() {
-    
     const { userDetails, counter } = this.state;
     console.log(`render called ${counter}`);
     return (
-      <div className="route">
+      <div className="flex flex-col items-center py-3">
         <p>About</p>
-        <div className="user-details">
+        <div className="text-center">
           {userDetails && userDetails.login && (
-            <div>
-              <img src={userDetails.avatar_url} alt="git-profile" className="avatar" />
-              <h1><a href={userDetails.html_url} target="__blank" className="git-link">{userDetails.login}</a></h1>
+            <div className="flex justify-center items-center flex-col">
+              <img
+                src={userDetails.avatar_url}
+                alt="git-profile"
+                className="self-center w-[220px] h-[220px] rounded-[50%] my-2 "
+              />
+              <h1>
+                <a
+                  href={userDetails.html_url}
+                  target="__blank"
+                  className="text-xl font-bold text-blue-400 hover:text-orange-400"
+                >
+                  {userDetails.login}
+                </a>
+              </h1>
             </div>
           )}
           <p>PUBLIC_REPO: {userDetails.public_repos}</p>
           <p>{userDetails.bio}</p>
-          <p>counter: {counter}</p> 
+          <p>counter: {counter}</p>
         </div>
       </div>
     );
