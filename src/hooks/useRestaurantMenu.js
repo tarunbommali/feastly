@@ -14,7 +14,6 @@ export default function useRestaurantMenu(resId) {
         }
         const data = await response.json();
         setResInfo(data);
-        console.log("custom hook called");
       } catch (error) {
         console.error("Error fetching menu:", error);
       }

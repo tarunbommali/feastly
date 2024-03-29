@@ -15,6 +15,10 @@ const Body = () => {
   const [lng, setLng] = useState(83.2184815);
   const [locationName, setLocationName] = useState("");
   const onlineStatus = useOnlineStatus();
+  const [restaurantOnlineDelveryTitle, setRestaurantOnlineDelveryTitle] =
+    useState("");
+
+  const [restaurantOnlineDelvery, setRestaurantOnlineDelvery] = useState([]);
 
   useEffect(() => {
     getLocation();
@@ -100,9 +104,6 @@ const Body = () => {
       );
       const data = await response.json();
       const addressComponents = data.address;
-
-      console.log(addressComponents);
-
       let city =
         addressComponents.city ||
         addressComponents.county ||
@@ -129,7 +130,15 @@ const Body = () => {
       const restaurantsList =
         res.data.cards[1].card.card.gridElements.infoWithStyle.restaurants;
       const title = res.data.cards[1].card.card.header.title;
-      console.log(restaurantsList);
+     
+      const restaurantOnlineDelveryTitleText =
+        res?.data?.cards[2]?.card?.card?.title;
+      setRestaurantOnlineDelveryTitle(restaurantOnlineDelveryTitleText);
+      const restaurantOnlineDelveryList =
+        res?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+          ?.restaurants;
+      setRestaurantOnlineDelvery(restaurantOnlineDelveryList);
+
       setInitialRestaurantsList(restaurantsList);
       setRestaurantsList(restaurantsList);
       setLoading(false);
@@ -142,16 +151,38 @@ const Body = () => {
 
   const renderRestaurantList = () => {
     return (
-      <ul className="flex flex-wrap items-center p-4 w-[85%]">
-        {restaurantsList.map((restaurant, index) => (
-          <RestaurantCard
-            key={index}
-            restaurant={restaurant}
-            lat={lat}
-            lng={lng}
-          />
-        ))}
-      </ul>
+      <div className="mx-auto">
+        <div className="flex flex-col">
+          <h1 className="py-3 font-bold text-2xl ">{title}</h1>
+          <ul className="flex flex-wrap justify-between items-center p-4">
+            {restaurantsList.map((restaurant, index) => (
+              <RestaurantCard
+                key={index}
+                restaurant={restaurant}
+                lat={lat}
+                lng={lng}
+              />
+            ))}
+          </ul>
+        </div>
+
+        <div className="flex flex-col">
+          <h1 className="py-3 font-bold text-2xl">
+            {restaurantOnlineDelveryTitle}
+          </h1>
+
+          <ul className="flex flex-wrap items-center p-4 ">
+            {restaurantOnlineDelvery.map((restaurant, index) => (
+              <RestaurantCard
+                key={index}
+                restaurant={restaurant}
+                lat={lat}
+                lng={lng}
+              />
+            ))}
+          </ul>
+        </div>
+      </div>
     );
   };
 
@@ -178,11 +209,9 @@ const Body = () => {
   return (
     <div className="flex  min-h-screen flex-col items-center">
       {renderBodyHeader()}
-      <div className="flex justify-between w-[80%]  ">
-        <h1 className="py-3 font-bold text-2xl ">{title}</h1>
+      <div className="flex justify-center items-center w-[85%] mx-auto">
+        {loading ? <ShimmerUi /> : renderRestaurantList()}
       </div>
-      <hr className="border-[1px] stroke-lime-600" />
-      {loading ? <ShimmerUi /> : renderRestaurantList()}
     </div>
   );
 };
