@@ -1,28 +1,56 @@
 import React from "react";
-import { RATING_STAR_ICON_URL } from "../utils/constants";
+import { RATING_STAR_ICON_URL, SWIGGY_MEDIA_ASSEST } from "../utils/constants";
 import { FaCircle } from "react-icons/fa";
 import { IoTriangle } from "react-icons/io5";
 
-
 const AccordionItemCard = ({ itemCard }) => {
   const itemDetails = itemCard?.card?.info;
-  const { name, imageId, price, ratings, itemAttribute , description} = itemDetails;
-  const { aggregatedRating } = ratings;
-  const {rating , ratingCountV2} = aggregatedRating
-  const { vegClassifier } = itemAttribute;
-  const imgUrl = "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_300,h_300,c_fit/" + imageId
-  
-  return (
-    <li className="flex justify-between text-[#414449] w-[100%]  rounded-sm shadow-sm my-2 p-2">
-        <div className="flex flex-col">
-        <h1 className="font-bold">{vegClassifier === "NONVEG" ? <IoTriangle className="fill-[#e43b4f] my-1" /> : <IoTriangle className="fill-[#0f8a65] my-1" />}</h1>
-        <h1 className="text-lg font-semibold">{name}</h1>
-        <p className="text-lg font-semibold">₹{price/100}</p>
-        <p className="flex items-center text-[#116649]"><img src={RATING_STAR_ICON_URL} alt="rating" />{rating} <span className="text-[#676a6d]">({ratingCountV2})</span></p>
+  const { name, imageId, price, ratings, itemAttribute, description } =
+    itemDetails || {};
+  const { aggregatedRating } = ratings || {};
+  const { rating, ratingCountV2 } = aggregatedRating || {};
+  const { vegClassifier } = itemAttribute || {};
 
-        <p className="my-1 text-[#676a6d]">{description}</p>
+  const imgUrl = SWIGGY_MEDIA_ASSEST + imageId;
+
+  const renderVegClassifier = () => {
+    return (
+      <div className="font-bold">
+        {vegClassifier === "NONVEG" ? (
+          <div className="inline-block p-[1px] px-[2px] rounded-lg border  border-[#e43b4f]">
+            <IoTriangle className="fill-[#e43b4f] my-1 rounded-md " />
+          </div>
+        ) : (
+          <div className="inline-block p-[1px] px-[4px] rounded-lg border border-[#0f8a65]">
+            <FaCircle className="fill-[#0f8a65] my-1 rounded-md" />
+          </div>
+        )}
       </div>
-      <img src={imgUrl} alt={name} className="w-[156px] h-[144px] rounded-md" />
+    );
+  };
+
+  return (
+    <li className="relative flex justify-between text-[#414449] w-[100%] rounded-sm border-b-2 my-4 p-4">
+      <div className="flex flex-col pb-4">
+        {renderVegClassifier()}
+        <h1 className="text-lg font-semibold">{name}</h1>
+        <p className="text-lg font-semibold">₹{price / 100}</p>
+        <p className="flex items-center text-[#116649]">
+          <img src={RATING_STAR_ICON_URL} alt="rating" />
+          {rating} <span className="text-[#676a6d]">({ratingCountV2})</span>
+        </p>
+        <p className="my-1 w-[85%] text-[#676a6d]">{description}</p>
+      </div>
+      <div className="flex flex-col justify-center items-center pb-4 w-[186px] h-[174px] ">
+        <img
+          src={imgUrl}
+          alt={name}
+          className="w-[156px] h-[144px] rounded-md"
+        />
+        <button className="absolute bottom-0 font-bold bg-white px-11 py-2 mb-4 rounded-lg text-[#1ba672] font-bolda border ">
+          Add
+        </button>
+      </div>
     </li>
   );
 };

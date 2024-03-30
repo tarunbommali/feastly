@@ -9,7 +9,7 @@ const RestaurantCard = (props) => {
   const { slaString } = sla;
 
   return (
-    <Link to={`restaurants/${id}`} className="nav-link" key={id}>
+    <Link to={`restaurants/${id}`} className="snap-always snap-center" key={id}>
       {" "}
       <li className="flex flex-col bg-[white] my-1 mx-3  w-[280px] h-[288px] hover:scale-[0.95]">
         <img
