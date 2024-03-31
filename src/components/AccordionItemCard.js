@@ -5,7 +5,9 @@ import { IoTriangle } from "react-icons/io5";
 
 const AccordionItemCard = ({ itemCard }) => {
   const itemDetails = itemCard?.card?.info;
-  const { name, imageId, price, ratings, itemAttribute, description } =
+  const price = itemDetails.price || itemDetails.defaultPrice 
+  
+  const { name, imageId, ratings, itemAttribute, description } =
     itemDetails || {};
   const { aggregatedRating } = ratings || {};
   const { rating, ratingCountV2 } = aggregatedRating || {};

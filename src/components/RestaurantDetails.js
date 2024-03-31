@@ -19,7 +19,7 @@ const RestaurantDetails = ({ restroDetails }) => {
     typeof feeDetails.amount === "number" ? feeDetails.amount / 100 : 0;
 
   return (
-    <div className="felx flex-col shadow-lg w-[100%] p-2 m-2 text-[#161a1f]">
+    <div className="felx flex-col shadow-lg w-[98%] p-2 m-2 text-[#161a1f]">
       <h1 className="text-xl font-bold my-4 py-2">{restroDetails.name}</h1>
       <div className="flex flex-col border p-4 m-2 rounded-md">
         <p className="flex items-center text-lg font-semibold">

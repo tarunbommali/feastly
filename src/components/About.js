@@ -1,26 +1,17 @@
 import React, { Component } from "react";
+import { IoMdOpen } from "react-icons/io";
+
+import UserContext from "../context/UserContext";
 
 export default class About extends Component {
   constructor(props) {
     super(props);
-    this.state = { userDetails: {}, counter: 0 };
-    console.log("constructor called");
+    this.state = { userDetails: {} };
     this.timerId = null; // Define timerId as a property of the component
   }
 
   componentDidMount() {
     this.getProfileDetails();
-    this.timerId = setInterval(() => {
-      this.setState((prevState) => ({
-        counter: prevState.counter + 1,
-      }));
-    }, 1000);
-    console.log("componentDidMount called");
-  }
-
-  componentWillUnmount() {
-    console.log("componentWillUnmount called");
-    clearInterval(this.timerId); // Use this.timerId to clear the interval
   }
 
   // Using an arrow function to define the method to maintain the correct context
@@ -36,34 +27,50 @@ export default class About extends Component {
   };
 
   render() {
-    const { userDetails, counter } = this.state;
-    console.log(`render called ${counter}`);
+    const { userDetails } = this.state;
+    
     return (
       <div className="flex flex-col items-center py-3">
         <p>About</p>
-        <div className="text-center">
+        <div className="flex shadow-md px-5 py-2 rounded-sm ">
+          <UserContext.Consumer>
+            {
+              ({loggedInUser}) => {
+              return  <h1 className="text-2xl font-bold">LoggedIn User : {loggedInUser}</h1>
+              }
+            }
+          </UserContext.Consumer>
+        </div>
+
+        <div className="text-center my-3 w-[60%] shadow-md rounded-lg px-5">
+
           {userDetails && userDetails.login && (
-            <div className="flex justify-center items-center flex-col">
+            <div className="flex justify-center items-center">
               <img
                 src={userDetails.avatar_url}
                 alt="git-profile"
-                className="self-center w-[220px] h-[220px] rounded-[50%] my-2 "
+                className="self-center w-[220px] h-[220px] rounded-[50%] my-2 hover:scale-105 "
               />
-              <h1>
+                 <div>
+                 
+           <h1>
                 <a
                   href={userDetails.html_url}
                   target="__blank"
-                  className="text-xl font-bold text-blue-400 hover:text-orange-400"
+                  className="text-xl font-bold text-[#004097] hover:text-orange-400"
                 >
                   {userDetails.login}
                 </a>
               </h1>
-            </div>
-          )}
           <p>PUBLIC_REPO: {userDetails.public_repos}</p>
           <p>{userDetails.bio}</p>
-          <p>counter: {counter}</p>
+          <p>Devloped by <a className='mt-5 underline text-[#004097] hover:text-orange-400' target="__blank" href='https://www.instagram.com/disistarun/'>Tarun</a>! No Copyrights.</p>
         </div>
+            </div>
+          )}
+        </div>
+
+        
       </div>
     );
   }

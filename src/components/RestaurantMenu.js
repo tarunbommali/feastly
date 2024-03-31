@@ -2,16 +2,23 @@ import { Link, useParams } from "react-router-dom";
 import useRestaurantMenu from "../hooks/useRestaurantMenu";
 import RestaurantDetails from "./RestaurantDetails";
 import AccordionItem from "./AccordionItem";
+import { useState } from "react";
 
 export default function RestaurantMenu() {
   const { resId } = useParams();
   const resInfo = useRestaurantMenu(resId);
+  const [activeIndex, setActiveIndex] = useState(null);
 
   if (!resInfo) {
     return "Loading...";
   }
+
   const restroName = resInfo?.data?.cards[0]?.card?.card?.text;
   const restroDetails = resInfo.data.cards[2].card.card.info;
+
+  const toggleAccordion = (index) => {
+    setActiveIndex(activeIndex === index ? null : index);
+  };
 
   const renderAccordionMenu = () => {
     const accordionList =
@@ -27,13 +34,18 @@ export default function RestaurantMenu() {
         "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
     );
 
-
     return (
-      <div className="flex flex-col my-3 mx-4  justify-start items-start">
+      <div className="flex flex-col my-3 mx-4 justify-start items-start">
         {/* Accordion type category */}
-        <ul className="flex flex-col">
+        <ul className="flex flex-col w-[100%]">
           {filteredItems.map((item, index) => (
-            <AccordionItem key={index} accordionDetails={{ item }} />
+            <AccordionItem
+              key={index}
+              accordionDetails={{ item }}
+              showItems={index === activeIndex}
+              setActiveAccordion={toggleAccordion}
+              index={ index}
+            />
           ))}
         </ul>
       </div>
@@ -55,7 +67,7 @@ export default function RestaurantMenu() {
 
   return (
     <div className="flex flex-col justify-center items-center">
-      <div className="flex flex-col my-3 w-[60%]">
+      <div className="flex flex-col my-3 w-[65%]">
         {renderBreadcrumb()}
         <RestaurantDetails restroDetails={restroDetails} />
         {renderAccordionMenu()}

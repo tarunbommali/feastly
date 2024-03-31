@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from "react";
+import React, { StrictMode, Suspense, lazy, useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import Body from "./src/components/Body";
 import Header from "./src/components/Header";
@@ -10,18 +10,38 @@ import Error from "./src/components/Error";
 import RestaurantMenu from "./src/components/RestaurantMenu";
 
 import Login from "./src/components/Login";
+import UserContext from "./src/context/UserContext";
 
 const Instamart = lazy(() => import("./src/components/Instamart"));
 
-const AppLayout = () => (
-  <div className="flex flex-col p-2 ">
-    <Header />
-    <div className="min-h-screen">
-      <Outlet />
-    </div>
-    <Footer />
-  </div>
-);
+const AppLayout = () => {
+  const [userName, setUserName] = useState();
+
+  useEffect(() => {
+    const userInfo = { userName: "Tarun Bommali" };
+    setUserName(userInfo.userName);
+    
+  }, []);
+
+  onAddLogin = (userName) => {
+    setUserName(userName)
+    console.log(userName)
+  } 
+
+  return (
+    <UserContext.Provider
+      value={{ loggedInUser: userName, onAddLogin }}
+    >
+      <div className="flex flex-col p-2 ">
+        <Header />
+        <div className="min-h-screen">
+          <Outlet />
+        </div>
+        <Footer />
+      </div>
+    </UserContext.Provider>
+  );
+};
 
 const appRouter = createBrowserRouter([
   {
@@ -31,6 +51,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/",
         element: <Body />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
       },
       {
         path: "/about",
@@ -55,11 +79,11 @@ const appRouter = createBrowserRouter([
     ],
     errorElement: <Error />,
   },
-  {
-    path: "/login",
-    element: <Login />,
-  },
 ]);
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-root.render(<RouterProvider router={appRouter} />);
+root.render(
+  <StrictMode>
+    <RouterProvider router={appRouter} />{" "}
+  </StrictMode>
+);

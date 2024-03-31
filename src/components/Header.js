@@ -1,10 +1,16 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { LOGO_IMG_URL } from "../utils/constants";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import useOnlineStatus from "../hooks/useOnlineStatus";
-
+import UserLoggedIn from "../context/UserContext";
 const Header = () => {
-  const [isLogin, setIsLogin] = useState(false);
+
+  const location = useLocation() 
+  const {pathname} = location;
+
+
+  const {loggedInUser} = useContext(UserLoggedIn)  
+  
   const onlineStatus = useOnlineStatus();
   return (
     <div className="flex justify-between px-5 py-1 shadow-md">
@@ -16,30 +22,31 @@ const Header = () => {
       <ul className="flex items-center text-lg font-semibold">
         <li className="px-5">Online Status: {onlineStatus ? "🟢" : "🔴"}</li>
         <li className="px-5">
-          <Link to="/" className="nav-link">
-            Home
-          </Link>
-        </li>
-        <li className="px-5">
-          <Link to="/instamart" className="nav-link">
-            Instamart
-          </Link>
-        </li>
-
-        <li className="px-5">
-          <Link to="/cart" className="nav-link">
-            Cart
-          </Link>
-        </li>
-        <li className="px-5">
-          <Link to="/about" className="nav-link">
-            About
-          </Link>
-        </li>
-        <li className="px-5">
-          <Link to="/Login" className="nav-link">
-            Login
-          </Link>
+        <Link to="/" className={`${pathname==='/' && "underline"}`}>
+          Home
+        </Link>
+      </li>
+      <li className="px-5">
+        <Link to="/instamart" className={`${pathname==='/instamart' && "underline"}`}>
+          Instamart
+        </Link>
+      </li>
+      <li className="px-5">
+        <Link to="/cart" className={`${pathname==='/cart' && "underline"}`}>
+          Cart
+        </Link>
+      </li>
+      <li className="px-5">
+        <Link to="/about" className={`${pathname==='/about' && "underline"}`}>
+          About
+        </Link>
+      </li>
+      <li className="px-5">
+        <Link to="/login" className={`${pathname==='/login' && "underline"}`}>
+          Login
+        </Link>
+      </li> <li className="px-5">
+          {loggedInUser}
         </li>
         {/* <li><button className="login-btn"  onClick={() => {setIsLogin(!isLogin)}}>{isLogin ? "Sign In" : "Sign Out"}</button></li> */}
       </ul>

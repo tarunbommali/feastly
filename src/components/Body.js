@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect , useContext} from "react";
 import RestaurantCard from "./RestaurantCard";
 import ShimmerUi from "./ShimmerUi";
 import { IoSearchOutline, IoCloseSharp } from "react-icons/io5";
 import { LuArrowRightLeft } from "react-icons/lu";
 
 import useOnlineStatus from "../hooks/useOnlineStatus";
+import UserLoggedIn from "../context/UserContext";
+import { FetchError } from "./FetchError";
 
 const Body = () => {
   const [initialRestaurantsList, setInitialRestaurantsList] = useState([]);
@@ -19,6 +21,10 @@ const Body = () => {
   const [fetchFailed , setFetchFailed ] = useState(false)
 
   const [restaurantOnlineDelvery, setRestaurantOnlineDelvery] = useState([]);
+
+  
+  const {loggedInUser} = useContext(UserLoggedIn) ; 
+  console.log(loggedInUser)
 
   useEffect(() => {
     getRestaurantList();
@@ -45,7 +51,7 @@ const Body = () => {
 
   const renderSearchInput = () => {
     return (
-      <div className="flex justify-between items-center border-[1px] w-[85%] my-5 rounded-md text-black  px-3 py-1 text-lg mr-5">
+      <div className="flex justify-between items-center border-[1px] w-[40%] my-5 rounded-md text-black  px-3 py-1 text-lg mr-5">
         <input
           type="text"
           placeholder="Search for Restaurants"
@@ -108,7 +114,7 @@ const Body = () => {
   const renderFilterOptions = () => {
     return (
       <div className="flex flex-wrap py-2 my-2 text-[#505357]">
-        <button className="flex items-center mx-4 py-1  rounded-2xl bg border border-1px">
+        <button className="flex items-center mx-4 py-1 px-4 rounded-2xl bg border border-1px">
           Filter <LuArrowRightLeft className="text-xl" />
         </button>
         <select
@@ -189,25 +195,27 @@ const Body = () => {
   };
 
   if (onlineStatus === false) return <h1>Looks likes your offline!😮</h1>;
-  if (fetchFailed) return (
-      <div className="flex  shadow-lg p-4">
+  if (fetchFailed) return <FetchError />
 
-        <div className="flex flex-col">
-        <h1>Install Allow CORS: Access-Control-AlIow-Origin</h1>
-        <p>API Referrer Policy: strict-origin-when-cross-origin</p>
-        
-        <a className="text-blue-950 text-xl underline" href="https://chromewebstore.google.com/detail/lhobafahddgcelffkeicbaginigeejlf">Download Extension</a>
-        <button className="my-3 p-2 font-semibold border" onClick={() => window.location.reload()} >Reload</button>
+const renderBodyHeader = () => {
+  return (
+    <div className="flex justify-between items-center w-[80%]">
+      <h1 className="flex items-center p-1 mx-2 text-2xl font-semibold">
+        <div className= " flex justify-center items-center bg-[#414449] mr-2 rounded-[50%] h-[50px] w-[50px] text-white">
+        {loggedInUser && loggedInUser.slice(0,2).toUpperCase()}
         </div>
-        <img src="https://lh3.googleusercontent.com/1wCZM8Py3IzeamnPWn1E1vW9BvECRS0tTnDbQGBUjFzsJTqxjax7pu7pUZugPd8vfaOtInhldnRQbuCIvCD_ifWR=s1280-w1280-h800" alt="cors" />
-      </div>)
-
+        {loggedInUser}
+      </h1>
+      {renderSearchInput()}
+    </div>
+  )
+}
 
 
 
   return (
     <div className="flex  min-h-screen flex-col items-center">
-      {renderSearchInput()}
+      {renderBodyHeader()}
       <div className="flex justify-center items-center w-[85%] mx-auto">
         {loading ? <ShimmerUi /> : renderRestaurantList()}
       </div>
