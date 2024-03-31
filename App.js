@@ -23,7 +23,7 @@ const AppLayout = () => {
     
   }, []);
 
-  onAddLogin = (userName) => {
+ const  onAddLogin = (userName) => {
     setUserName(userName)
   } 
 
