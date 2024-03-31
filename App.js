@@ -25,12 +25,11 @@ const AppLayout = () => {
 
   onAddLogin = (userName) => {
     setUserName(userName)
-    console.log(userName)
   } 
 
   return (
     <UserContext.Provider
-      value={{ loggedInUser: userName, onAddLogin }}
+      value={{ loggedInUser: userName, onAddLogin: onAddLogin }}
     >
       <div className="flex flex-col p-2 ">
         <Header />
