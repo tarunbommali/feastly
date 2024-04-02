@@ -2,9 +2,15 @@ import React from "react";
 import { RATING_STAR_ICON_URL, SWIGGY_MEDIA_ASSEST } from "../utils/constants";
 import { FaCircle } from "react-icons/fa";
 import { IoTriangle } from "react-icons/io5";
+import { useDispatch } from "react-redux";
+
+import { addItem } from "../redux-store/cartSlice";
 
 const AccordionItemCard = ({ itemCard }) => {
   const itemDetails = itemCard?.card?.info;
+  const dispatch = useDispatch(); 
+
+
   const price = itemDetails.price || itemDetails.defaultPrice 
   
   const { name, imageId, ratings, itemAttribute, description } =
@@ -31,6 +37,13 @@ const AccordionItemCard = ({ itemCard }) => {
     );
   };
 
+
+  const onHandelAddItemToCart = (itemDetails) => {
+    console.log("Adding item to cart..."); // Add this line for debugging
+    // Dispatch an Action
+    dispatch(addItem(itemDetails));
+  };
+
   return (
     <li className="relative flex justify-between text-[#414449] w-[100%] rounded-sm border-b-2 my-4 p-4">
       <div className="flex flex-col pb-4">
@@ -49,7 +62,7 @@ const AccordionItemCard = ({ itemCard }) => {
           alt={name}
           className="w-[156px] h-[144px] rounded-md"
         />
-        <button className="absolute bottom-0 font-bold bg-white px-11 py-2 mb-4 rounded-lg text-[#1ba672] font-bolda border ">
+        <button onClick={()=>onHandelAddItemToCart(itemDetails)}  className="absolute bottom-0 font-bold bg-white px-11 py-2 mb-4 rounded-lg text-[#1ba672] font-bolda border ">
           Add
         </button>
       </div>

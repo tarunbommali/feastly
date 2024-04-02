@@ -3,27 +3,31 @@
     "version": "1.0.0",
     "description": "A Food Delevring App",
     "scripts": {
-      "test": "jest",
-      "start": "npx parcel index.html",
-      "build": "npx parcel build index.html"
+        "test": "jest",
+        "start": "npx parcel index.html",
+        "build": "npx parcel build index.html"
     },
     "keywords": [
-      "React18"
+        "React18"
     ],
     "author": "TarunBommali",
     "license": "ISC",
     "devDependencies": {
-      "parcel": "^2.12.0",
-      "postcss": "^8.4.38",
-      "process": "^0.11.10",
-      "tailwindcss": "^3.4.1"
+        "parcel": "^2.12.0",
+        "postcss": "^8.4.38",
+        "process": "^0.11.10",
+        "tailwindcss": "^3.4.1"
     },
     "dependencies": {
-      "formik": "^2.4.5",
-      "react": "^18.2.0",
-      "react-dom": "^18.2.0",
-      "react-icons": "^5.0.1",
-      "react-router-dom": "^6.22.3"
+        "@reduxjs/toolkit": "^2.2.3",
+        "formik": "^2.4.5",
+        "hamburger-react": "^2.5.0",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "react-icons": "^5.0.1",
+        "react-redux": "^9.1.0",
+        "react-router-dom": "^6.22.3",
+        "react-use": "^17.5.0"
     },
     "browserslist": "last 3 versions"
-  }
+}

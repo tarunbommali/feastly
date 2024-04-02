@@ -11,6 +11,8 @@ import RestaurantMenu from "./src/components/RestaurantMenu";
 
 import Login from "./src/components/Login";
 import UserContext from "./src/context/UserContext";
+import { Provider } from "react-redux";
+import appStore from "./src/redux-store/appStore";
 
 const Instamart = lazy(() => import("./src/components/Instamart"));
 
@@ -18,7 +20,7 @@ const AppLayout = () => {
   const [userName, setUserName] = useState();
 
   useEffect(() => {
-    const userInfo = { userName: "Tarun Bommali" };
+    const userInfo = { userName: "Disistarun" };
     setUserName(userInfo.userName);
     
   }, []);
@@ -28,6 +30,7 @@ const AppLayout = () => {
   } 
 
   return (
+    <Provider store={appStore}>
     <UserContext.Provider
       value={{ loggedInUser: userName, onAddLogin: onAddLogin }}
     >
@@ -39,6 +42,7 @@ const AppLayout = () => {
         <Footer />
       </div>
     </UserContext.Provider>
+    </Provider>
   );
 };
 

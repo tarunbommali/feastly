@@ -4,7 +4,7 @@ import { IoReload } from "react-icons/io5";
 
 export const FetchError = () => {
   return (
-    <div className="flex flex-col shadow-lg p-4 w-[40%] mx-auto">
+    <div className="flex flex-col shadow-lg p-4 w mx-auto w-[90%]  md:w-[40%] mt-5">
       <img
         src="https://lh3.googleusercontent.com/1wCZM8Py3IzeamnPWn1E1vW9BvECRS0tTnDbQGBUjFzsJTqxjax7pu7pUZugPd8vfaOtInhldnRQbuCIvCD_ifWR=s1280-w1280-h800"
         alt="cors"

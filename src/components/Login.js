@@ -25,14 +25,14 @@ const Login = () => {
           type="text"
           className="outline-none border px-4 py-2"
           value={userInput}
-          placeholder="@username"
+          placeholder="enter your name"
           onChange={onChangeInput}
         />
         <button
           className="outline-none border-1 px-4 py-2 text-white font-bold hover:scale-95"
           onClick={onAddUserName}
         >
-          Add UserName
+          Login 
         </button>
       </div>
     </div>
