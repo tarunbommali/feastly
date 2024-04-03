@@ -1,7 +1,8 @@
 import React from 'react';
 import { FaCircle } from "react-icons/fa";
 import { IoTriangle } from "react-icons/io5";
-
+import { useSelector } from 'react-redux';
+import { removeItem } from '../redux-store/cartSlice';
 
 export default function CartItemCard({ itemDetails }) {
   const price = itemDetails.price || itemDetails.defaultPrice;
@@ -11,6 +12,8 @@ export default function CartItemCard({ itemDetails }) {
   const { rating, ratingCountV2 } = aggregatedRating || {};
   const { vegClassifier } = itemAttribute || {};
   const imgUrl = SWIGGY_MEDIA_ASSEST + imageId;
+
+  
 
   const renderVegClassifier = () => {
     return (
@@ -31,7 +34,7 @@ export default function CartItemCard({ itemDetails }) {
   const renderQuantityControl = () => {
     return (
       <div className='flex  items-center text-xl font-bold border border-[#d4d5d9] rounded-xl shadow-md p-2'>
-        <button className=''>-</button>
+        <button className='' onClick={() => removeItem(itemDetails.name)}>-</button>
         <input type="text" disabled className='w-[40px] text-center' value="1" />
         <button id="add-btn">+</button>
       </div>
@@ -43,7 +46,10 @@ export default function CartItemCard({ itemDetails }) {
       <div className='flex w-[100%]'>
         <img src={imgUrl} className='h-[190px] w-[180px] rounded-md' alt={name} />
         <div className='flex px-2 flex-col w-[100%]'>
-          <p className='flex text-xl font-bold text-[#282c3f]'>{renderVegClassifier()}{ name}</p>
+          <div className='flex text-xl font-bold text-[#282c3f]'>
+            {renderVegClassifier()}
+            { name}
+          </div>
           <div className='flex justify-between items-center'>
             {renderQuantityControl()}
             <p className='text-lg font-semibold text-[#686b78]'>₹{price/100}</p>

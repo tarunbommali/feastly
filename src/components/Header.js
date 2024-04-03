@@ -1,9 +1,7 @@
 import { LOGO_IMG_URL } from "../utils/constants";
 import { Link, useLocation } from "react-router-dom";
-import useOnlineStatus from "../hooks/useOnlineStatus";
 import UserLoggedIn from "../context/UserContext";
 import { LiaShoppingBagSolid } from "react-icons/lia";
-
 import { useClickAway } from "react-use";
 import { useRef, useState, useContext } from "react";
 import { Squash as Hamburger } from "hamburger-react";
@@ -30,7 +28,7 @@ const Header = () => {
 
   const renderDesktopNavMenu = () => {
     return (
-      <ul className="hidden md:flex items-center text-lg font-semibold ">
+      <ul className="hidden md:flex items-center text-lg font-semibold   ">
          <li className="px-5">
           <Link to="/" className={`hover:text-[#00a6ed] ${pathname === "/" && "font-bold"}`}>
             Home
@@ -139,7 +137,7 @@ const Header = () => {
   };
 
   return (
-    <nav className="flex items-center justify-between bg-[#ffffff] px-5 py-1 shadow-md w-[100%]">
+    <nav className="flex items-center justify-between bg-[#ffffff] px-5 py-1 shadow-md w-[100%] sticky top-0 whitespace-pre-wrap  z-50">
       <Link to="/" className="flex items-center">
         <img src={LOGO_IMG_URL} alt="logo" className="w-[72px] h-[72px]  p-3" />
         <h1 className="font-bold text-3xl text-[#00a6ed]">Feastly</h1>

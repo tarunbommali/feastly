@@ -6,16 +6,18 @@ import { clearCart } from "../redux-store/cartSlice";
 export default function Cart() {
   const cartItems = useSelector((store) => store.cart.items);
 
-  const dispatch = useDispatch((store) => store.cart.items)
+  const dispatch = useDispatch((store) => store.cart.items);
 
-  const total = cartItems.reduce((acc, item) => acc + item.price/100, 0);
-  const deliveryCharge = 33; 
-  const gstCharges  = 55.6; 
+  const total = cartItems.reduce((acc, item) => acc + (item.price || item.defaultPrice )/ 100, 0);
+  const deliveryCharge = 33;
+  const gstCharges = 55.6;
+  console.log(cartItems)
 
+   
 
-  const handelClearCart = () =>{
-      dispatch(clearCart());
-  }
+  const handelClearCart = () => {
+    dispatch(clearCart());
+  };
 
   const renderCartItemList = () => {
     return (
@@ -56,7 +58,7 @@ export default function Cart() {
         </div>
         <hr className="border border-2px my-2 border-black" />
         <div className="flex font-bold justify-between">
-          TO PAY<span>₹{total +deliveryCharge +gstCharges}</span>
+          TO PAY<span>₹{total + deliveryCharge + gstCharges}</span>
         </div>
       </div>
     );
@@ -64,13 +66,20 @@ export default function Cart() {
   const renderApplyCopounView = () => {
     return (
       <div className="flex items-center justify-between w-[100%] my-2 py-2 shadow-sm">
-       <div className="flex items-center"> <input
-          type="input"
-          placeholder="Apply Copoun"
-          className="border border-dashed rounded-l-lg px-2 text-xl py-1 border-[#a9abb2] outline-none "
-        /><button className="cursor-pointer border border-[#00a6ed] bg-[#00a6ed] rounded-r-lg text-[#ffffff] px-4 font-bold py-1 text-xl"
-        >Apply</button></div>
-        <button onClick={handelClearCart} className="cursor-pointer  border border-black bg-black rounded-sm text-[#ffffff] px-4 font-bold py-1 text-xl">
+        <div className="flex items-center">
+          <input
+            type="input"
+            placeholder="Apply Copoun"
+            className="border border-dashed rounded-l-lg px-2 text-xl py-1 border-[#a9abb2] outline-none "
+          />
+          <button className="cursor-pointer border border-[#00a6ed] bg-[#00a6ed] rounded-r-lg text-[#ffffff] px-4 font-bold py-1 text-xl">
+            Apply
+          </button>
+        </div>
+        <button
+          onClick={handelClearCart}
+          className="cursor-pointer  border border-black bg-black rounded-sm text-[#ffffff] px-4 font-bold py-1 text-xl"
+        >
           Clear All
         </button>
       </div>

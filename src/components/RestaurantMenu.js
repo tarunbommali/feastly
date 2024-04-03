@@ -3,14 +3,24 @@ import useRestaurantMenu from "../hooks/useRestaurantMenu";
 import RestaurantDetails from "./RestaurantDetails";
 import AccordionItem from "./AccordionItem";
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import { LiaShoppingBagSolid } from "react-icons/lia";
 
 export default function RestaurantMenu() {
   const { resId } = useParams();
   const resInfo = useRestaurantMenu(resId);
   const [activeIndex, setActiveIndex] = useState(null);
+  const cartItems = useSelector((store) => store.cart.items)
+  const[multiple, setMultiple] = useState([])
 
   if (!resInfo) {
-    return "Loading...";
+    return (
+      <div className="flex flex-col mx-auto items-center">
+        {[...Array(16)].map((_, index) => (
+          <div key={index} className="bg-[#edeff4] h-[200px] w-[65%] rounded-md my-2"></div>
+        ))}
+      </div>
+    );
   }
 
   const restroName = resInfo?.data?.cards[0]?.card?.card?.text;
@@ -27,13 +37,11 @@ export default function RestaurantMenu() {
     if (!accordionList || accordionList.length === 0) {
       return null; // Return null if accordionList is empty or undefined
     }
-
     const filteredItems = accordionList?.filter(
       (item) =>
         item.card.card["@type"] ===
         "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
     );
-
     return (
       <div className="flex flex-col my-3 mx-4 justify-start items-start">
         {/* Accordion type category */}
@@ -71,6 +79,12 @@ export default function RestaurantMenu() {
         {renderBreadcrumb()}
         <RestaurantDetails restroDetails={restroDetails} />
         {renderAccordionMenu()}
+        {cartItems.length > 0 && (
+        <div className="flex items-center pt-5  font-bold text-white justify-between  text-lg bottom-0 pb-5 fixed bg-[#60b246] py-3 px-5 h-[20] w-[65%]">
+          <h1>{cartItems.length} {cartItems === 1? "item" :"items"} added</h1>
+          <Link to='/cart' className="flex items-center">VIEW CART <LiaShoppingBagSolid/> </Link>
+        </div>
+      )}
       </div>
     </div>
   );
