@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import { IoMdOpen } from "react-icons/io";
+import { FaLinkedin } from "react-icons/fa6";
+import { GrInstagram } from "react-icons/gr";
+import { FaGithub } from "react-icons/fa";
 
 import UserContext from "../context/UserContext";
 
@@ -7,7 +9,6 @@ export default class About extends Component {
   constructor(props) {
     super(props);
     this.state = { userDetails: {} };
-    this.timerId = null; // Define timerId as a property of the component
   }
 
   componentDidMount() {
@@ -46,7 +47,7 @@ export default class About extends Component {
 
         <div className="text-center my-3 w-[90%] shadow-md rounded-lg px-5 lg:w-[70%] ">
           {userDetails && userDetails.login && (
-            <div className="flex  flex-col p-5 justify-center items-center lg:flex flex-row">
+            <div className="flex  p-5 justify-center items-center lg:flex flex-row">
               <img
                 src={userDetails.avatar_url}
                 alt="git-profile"
@@ -64,21 +65,27 @@ export default class About extends Component {
                 </h1>
                 <p>PUBLIC_REPO: {userDetails.public_repos}</p>
                 <p>{userDetails.bio}</p>
-                <p>
-                  Devloped by{" "}
-                  <a
-                    className="mt-5 underline text-[#004097] hover:text-orange-400"
-                    target="__blank"
-                    href="https://www.instagram.com/disistarun/"
-                  >
-                    Tarun
-                  </a>
-                  ! No Copyrights.
-                </p>
               </div>
             </div>
           )}
+
         </div>
+
+          
+        <div className="flex items-center pt-5  font-bold    text-lg bottom-10 pb-5 fixed ">
+            <a
+              href="https://www.linkedin.com/in/tarunbommali/"
+              target="__blank"
+            >
+              <FaLinkedin className="text-4xl hover:scale-105 mx-4 text-[#0a66c2]" />
+            </a>
+            <a href="https://www.instagram.com/disistarun/" target="__blank">
+              <GrInstagram className="text-4xl text-[#fe326e] hover:scale-105 mx-4" />
+            </a>
+            <a href="https://github.com/tarunbommali" target="__blank">
+              <FaGithub className="text-4xl text-[#1f2328]  hover:scale-105 mx-4" />
+            </a>
+          </div>
       </div>
     );
   }

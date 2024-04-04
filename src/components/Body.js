@@ -25,7 +25,7 @@ const Body = () => {
   const { loggedInUser } = useContext(UserLoggedIn);
   useEffect(() => {
     getRestaurantList();
-  });
+  },[]);
 
   const onHandleSearch = (searchInputText) => {
     setSearchInput(searchInputText);
@@ -164,7 +164,7 @@ const Body = () => {
       <div className="mx-auto">
         <div className="flex flex-col">
           <h1 className="py-3 font-bold text-2xl ">{title}</h1>
-          <ul className="flex flex-wrap  justify-between items-center p-4">
+          <ul className="flex flex-wrap items-center p-4">
             {restaurantsList.map((restaurant, index) => (
               <RestaurantCard key={index} restaurant={restaurant} />
             ))}

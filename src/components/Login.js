@@ -25,7 +25,7 @@ const Login = () => {
           type="text"
           className="outline-none border px-4 py-2"
           value={userInput}
-          placeholder="enter your name"
+          placeholder="login with your name"
           onChange={onChangeInput}
         />
         <button
