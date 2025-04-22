@@ -5,19 +5,23 @@ import AccordionItem from "./AccordionItem";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { LiaShoppingBagSolid } from "react-icons/lia";
+import { ShimmerThumbnail } from "react-shimmer-effects";
 
 export default function RestaurantMenu() {
   const { resId } = useParams();
   const resInfo = useRestaurantMenu(resId);
   const [activeIndex, setActiveIndex] = useState(null);
-  const cartItems = useSelector((store) => store.cart.items)
-  const[multiple, setMultiple] = useState([])
+  const cartItems = useSelector((store) => store.cart.items);
+  const [multiple, setMultiple] = useState([]);
 
   if (!resInfo) {
     return (
       <div className="flex flex-col mx-auto items-center">
         {[...Array(16)].map((_, index) => (
-          <div key={index} className="bg-[#edeff4] h-[200px] w-[65%] rounded-md my-2"></div>
+          <div
+            key={index}
+            className="bg-[#edeff4] h-[200px] w-[65%] rounded-md my-2"
+          ></div>
         ))}
       </div>
     );
@@ -52,7 +56,7 @@ export default function RestaurantMenu() {
               accordionDetails={{ item }}
               showItems={index === activeIndex}
               setActiveAccordion={toggleAccordion}
-              index={ index}
+              index={index}
             />
           ))}
         </ul>
@@ -80,11 +84,15 @@ export default function RestaurantMenu() {
         <RestaurantDetails restroDetails={restroDetails} />
         {renderAccordionMenu()}
         {cartItems.length > 0 && (
-        <div className="flex items-center pt-5  font-bold text-white justify-between  text-lg bottom-0 pb-5 fixed bg-[#60b246] py-3 px-5 h-[20] w-[65%]">
-          <h1>{cartItems.length} {cartItems === 1? "item" :"items"} added</h1>
-          <Link to='/cart' className="flex items-center">VIEW CART <LiaShoppingBagSolid/> </Link>
-        </div>
-      )}
+          <div className="flex items-center pt-5  font-bold text-white justify-between  text-lg bottom-0 pb-5 fixed bg-[#60b246] py-3 px-5 h-[20] w-[65%]">
+            <h1>
+              {cartItems.length} {cartItems === 1 ? "item" : "items"} added
+            </h1>
+            <Link to="/cart" className="flex items-center">
+              VIEW CART <LiaShoppingBagSolid />{" "}
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   );

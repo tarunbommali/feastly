@@ -23,6 +23,7 @@ const Body = () => {
   const [restaurantOnlineDelvery, setRestaurantOnlineDelvery] = useState([]);
 
   const { loggedInUser } = useContext(UserLoggedIn);
+  
   useEffect(() => {
     getRestaurantList();
   },[]);
