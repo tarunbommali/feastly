@@ -4,7 +4,6 @@ import Body from "./src/components/Body";
 import Header from "./src/components/Header";
 import Footer from "./src/components/Footer";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
-import About from "./src/components/About";
 import Cart from "./src/components/Cart";
 import Error from "./src/components/Error";
 import RestaurantMenu from "./src/components/RestaurantMenu";
@@ -13,6 +12,7 @@ import Login from "./src/components/Login";
 import UserContext from "./src/context/UserContext";
 import { Provider } from "react-redux";
 import appStore from "./src/redux-store/appStore";
+import AboutWrapper from "./src/components/AboutWrapper";
 
 const Instamart = lazy(() => import("./src/components/Instamart"));
 
@@ -22,26 +22,25 @@ const AppLayout = () => {
   useEffect(() => {
     const userInfo = { userName: "Disistarun" };
     setUserName(userInfo.userName);
-    
   }, []);
 
- const  onAddLogin = (userName) => {
-    setUserName(userName)
-  } 
+  const onAddLogin = (userName) => {
+    setUserName(userName);
+  };
 
   return (
     <Provider store={appStore}>
-    <UserContext.Provider
-      value={{ loggedInUser: userName, onAddLogin: onAddLogin }}
-    >
-      <div className="flex flex-col p-2 ">
-        <Header />
-        <div className="min-h-screen">
-          <Outlet />
+      <UserContext.Provider
+        value={{ loggedInUser: userName, onAddLogin: onAddLogin }}
+      >
+        <div className="flex flex-col p-2 ">
+          <Header />
+          <div className="min-h-screen">
+            <Outlet />
+          </div>
+          <Footer />
         </div>
-        <Footer />
-      </div>
-    </UserContext.Provider>
+      </UserContext.Provider>
     </Provider>
   );
 };
@@ -60,9 +59,11 @@ const appRouter = createBrowserRouter([
         element: <Login />,
       },
       {
-        path: "/about",
-        element: <About />,
+        path: "/about/:tabId",
+        element: <AboutWrapper />, // functional wrapper for class component
+        
       },
+      ,
       {
         path: "/cart",
         element: <Cart />,
@@ -87,6 +88,6 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <StrictMode>
-    <RouterProvider router={appRouter} />{" "}
+    <RouterProvider router={appRouter} />
   </StrictMode>
 );
