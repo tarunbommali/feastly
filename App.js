@@ -20,7 +20,7 @@ const AppLayout = () => {
   const [userName, setUserName] = useState();
 
   useEffect(() => {
-    const userInfo = { userName: "Disistarun" };
+    const userInfo = { userName: "Developer" };
     setUserName(userInfo.userName);
   }, []);
 
@@ -75,7 +75,7 @@ const appRouter = createBrowserRouter([
       {
         path: "instamart",
         element: (
-          <Suspense fallback={<h1>...Loading</h1>}>
+          <Suspense fallback={<h1 className="text-center text-xl">...Loading</h1>}>
             <Instamart />
           </Suspense>
         ),

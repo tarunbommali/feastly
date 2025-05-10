@@ -5,13 +5,16 @@ import { clearCart } from "../redux-store/cartSlice";
 
 export default function Cart() {
   const cartItems = useSelector((store) => store.cart.items);
-  const dispatch = useDispatch(); // ✅ FIXED: Correct usage of useDispatch
+  const dispatch = useDispatch(); 
 
-  // Calculate total
+
+
   const total = cartItems.reduce(
-    (acc, item) => acc + (item.price || item.defaultPrice) / 100,
-    0
-  );
+  (acc, item) =>
+    acc + ((item.price || item.defaultPrice) * (item.quantity || 1)) / 100,
+  0
+);
+
 
   const deliveryCharge = 33;
   const gstCharges = 55.6;

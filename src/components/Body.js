@@ -217,10 +217,10 @@ const Body = () => {
   );
 
   const renderBodyHeader = () => (
-    <div className="flex justify-between items-center mr-6 w-[82%]">
+    <div className="flex justify-between items-center mr-6 w-[100%] md:w-[82%]">
       <div className="flex flex-col ml-4 text-xl font-semibold">
-       <span className="font-thin"> Hi Developer, </span>
-       <h1> {loggedInUser}</h1>
+       
+       <h1> Hi {loggedInUser}.!</h1>
       </div>
       {renderSearchInput()}
     </div>

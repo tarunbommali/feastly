@@ -6,24 +6,45 @@ const cartSlice = createSlice({
     items: [],
   },
   reducers: {
-    // dispatch Action 
+    // Add item or increase quantity
     addItem: (state, action) => {
-        // mutating the state here
-      state.items.push(action.payload);
-    },
+      const newItem = action.payload;
+      const existingItem = state.items.find(item => item.id === newItem.id);
 
-    removeItem: (state, action) => {
-      const indexToRemove = state.items.findIndex(item => item.name === action.payload);
-      if (indexToRemove !== -1) {
-        state.items.splice(indexToRemove, 1);
+      if (existingItem) {
+        existingItem.quantity += 1;
+      } else {
+        state.items.push({ ...newItem, quantity: 1 });
       }
     },
-    clearCart: (state, action) => {
-      state.items.length = 0;
+
+    // Decrease quantity or remove item
+    decreaseItem: (state, action) => {
+      const itemId = action.payload;
+      const existingItem = state.items.find(item => item.id === itemId);
+
+      if (existingItem) {
+        if (existingItem.quantity > 1) {
+          existingItem.quantity -= 1;
+        } else {
+          state.items = state.items.filter(item => item.id !== itemId);
+        }
+      }
+    },
+
+    // Remove item directly (by id)
+    removeItem: (state, action) => {
+      const itemId = action.payload;
+      state.items = state.items.filter(item => item.id !== itemId);
+    },
+
+    // Clear the whole cart
+    clearCart: (state) => {
+      state.items = [];
     },
   },
 });
 
-export const {addItem, removeItem, clearCart} = cartSlice.actions ; 
+export const { addItem, decreaseItem, removeItem, clearCart } = cartSlice.actions;
 
 export default cartSlice.reducer;

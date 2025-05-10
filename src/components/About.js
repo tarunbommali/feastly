@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { fetchUserDetails } from "../redux-store/userSlice";
 import UserContext from "../context/UserContext";
 import AboutMeShimmer from "./AboutMeShimmer.js";
-import AboutProject from "./AboutProject.js";
+
 import { Link, useParams } from "react-router-dom";
 
 class About extends Component {
@@ -39,7 +39,7 @@ class About extends Component {
               alt="git-profile"
               className="w-[220px] h-[220px] rounded-full my-2 hover:scale-105"
             />
-            <div className="lg:ml-5 text-left">
+            <div className="sm:my-7 lg:ml-5 text-left">
               <a
                 href={userDetails.html_url}
                 target="__blank"
@@ -48,9 +48,9 @@ class About extends Component {
                 {userDetails.login}
               </a>
               <p>PUBLIC_REPO: {userDetails.public_repos}</p>
-              <p className="w-[60%]">{userDetails.bio}</p>
+              <p className="my-4 md:w-[60%]">{userDetails.bio}</p>
             </div>
-            <div className="flex flex-col justify-center gap-5 pt-5 font-bold text-lg pb-5">
+            <div className="flex flex-row  md:flex-col justify-center gap-5 pt-5 font-bold text-lg pb-5">
               <a
                 href="https://www.linkedin.com/in/tarunbommali/"
                 target="__blank"
@@ -90,11 +90,7 @@ class About extends Component {
       label: "Profile",
       component: this.Profile,
     },
-    {
-      tabId: "aboutProject",
-      label: "Project Details",
-      component: AboutProject,
-    },
+   
     { tabId: "aboutMe", label: "About Me", component: this.AboutMe },
   ];
 
@@ -105,8 +101,8 @@ class About extends Component {
     )?.component;
 
     return (
-      <div className="flex flex-col items-center gap-4 py-3">
-        <ul className="flex gap-4 w-[85%] mb-4">
+      <div className="flex flex-col items-center md:gap-4 py-3">
+        <ul className="flex md:gap-4 w-[100%] md:w-[85%] mb-4">
           {this.tabList.map((item) => (
             <li key={item.tabId}>
               <Link

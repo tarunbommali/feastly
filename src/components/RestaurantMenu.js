@@ -66,7 +66,7 @@ export default function RestaurantMenu() {
 
   const renderBreadcrumb = () => {
     return (
-      <div className="flex text-[10.5px]">
+      <div className="flex text-sm">
         <Link to="/" className="nav-link">
           Home
         </Link>
