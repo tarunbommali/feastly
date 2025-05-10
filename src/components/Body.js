@@ -235,7 +235,7 @@ const Body = () => {
   return (
     <div className="flex min-h-screen flex-col items-center">
       {renderBodyHeader()}
-      <div className="flex justify-center items-center w-[85%] mx-auto">
+      <div className="flex justify-center items-center w-[100%] md:w-[85%] mx-auto">
         {loading ? <ShimmerUi /> : renderRestaurantList()}
       </div>
     </div>

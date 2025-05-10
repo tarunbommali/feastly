@@ -5,6 +5,11 @@ import { IoReload } from "react-icons/io5";
 export const FetchError = () => {
   return (
     <div className="flex flex-col shadow-lg p-4 w mx-auto w-[90%]  md:w-[40%] mt-5">
+      <div className="md:hidden block  text-sm my-4  text-gray-500">
+        Make sure you are viewing in Desktop. Use Chrome Browser && Install below Extension
+      </div>
+
+      <div className="hidden md:block">
       <img
         src="https://lh3.googleusercontent.com/1wCZM8Py3IzeamnPWn1E1vW9BvECRS0tTnDbQGBUjFzsJTqxjax7pu7pUZugPd8vfaOtInhldnRQbuCIvCD_ifWR=s1280-w1280-h800"
         alt="cors"
@@ -26,6 +31,7 @@ export const FetchError = () => {
         >
           <IoReload className="mx-2" /> Reload
         </button>
+      </div>
       </div>
       <p>or</p>
       <p>sometimes there might be issue with <a target="__blank" className="text-[#00a6ed] font-medium underline" href="https://www.swiggy.com/">siggy.com</a> API</p>

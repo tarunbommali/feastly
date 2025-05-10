@@ -81,8 +81,12 @@ const Header = () => {
         </ul>
 
         {/* Mobile Menu Button */}
-        <div className="md:hidden flex items-center gap-2">
-          <button className="p-2 rounded-lg" onClick={() => dispatch(toggleSidebar())}>
+
+        <div className="md:hidden  items-center gap-2">
+          <button
+            className="p-2 rounded-lg md:hidden"
+            onClick={() => dispatch(toggleSidebar())}
+          >
             {expanded ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
@@ -108,8 +112,7 @@ const Header = () => {
                     <Link
                       to={item.path}
                       className={`text-xl font-semibold ${
-                        pathname === item.path ||
-                        pathname.startsWith(item.path)
+                        pathname === item.path || pathname.startsWith(item.path)
                           ? "text-blue-600"
                           : ""
                       } flex items-center`}
